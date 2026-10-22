@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Store</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="lab4.html">Store</a></li>
+          <li><a href="lab5.html">Registration</a></li>
+        </ul>
+      </nav>
+
+      <div id="orderForm">
+        <h2>Welcome to the store!</h2>
+
+        <div class="input-group">
+          <label>What is your name?</label>
+          <input type="text" id="nameInput" />
+        </div>
+
+        <div class="input-group">
+          <label>What item would you like to order?</label>
+          <input type="text" id="itemInput" />
+        </div>
+
+        <div class="input-group">
+          <label>How many items would you like to order (1-99)?</label>
+          <input type="number" id="qtyInput" min="1" max="99" />
+        </div>
+
+        <button onclick="processOrder()">Submit Order</button>
+      </div>
+
+      <div id="receipt" style="display: none">
+        <h1 id="greeting"></h1>
+        <p><strong>Item Ordered:</strong> <span id="itemName"></span></p>
+        <p><strong>Quantity:</strong> <span id="itemQuantity"></span></p>
+        <p><strong>Expected Arrival:</strong> <span id="arrivalDate"></span></p>
+      </div>
+    </div>
+
+    <script>
+      function processOrder() {
+        let customerName = document.getElementById("nameInput").value;
+        let itemRequested = document.getElementById("itemInput").value;
+        let numberOfItems = document.getElementById("qtyInput").value;
+
+        let date = new Date();
+        let hour = date.getHours();
+        let timeGreeting = "";
+
+        if (hour < 12) {
+          timeGreeting = "Good Morning";
+        } else if (hour < 18) {
+          timeGreeting = "Good Afternoon";
+        } else {
+          timeGreeting = "Good Evening";
+        }
+
+        let deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + 7);
+
+        document.getElementById("greeting").innerHTML =
+          timeGreeting + " " + customerName + ", Thank you for Ordering!";
+        document.getElementById("itemName").innerHTML = itemRequested;
+        document.getElementById("itemQuantity").innerHTML = numberOfItems;
+        document.getElementById("arrivalDate").innerHTML =
+          deliveryDate.toDateString();
+
+        document.getElementById("orderForm").style.display = "none";
+        document.getElementById("receipt").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
