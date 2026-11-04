@@ -13,7 +13,7 @@ document.getElementById("load-btn").addEventListener("click", () => {
         tbody.innerHTML += `
         <tr>
         <td>${item.factId}</td>
-        <td>${item.fact}</td>
+        <td>${item.text}</td>
         </tr>
         `;
       });
